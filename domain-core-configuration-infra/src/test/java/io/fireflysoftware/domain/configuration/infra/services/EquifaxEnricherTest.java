@@ -58,11 +58,11 @@ class EquifaxEnricherTest {
     @Mock
     private EnrichmentRequest enrichmentRequest;
 
-    private EquifaxEnricher equifaxEnricher;
+    private EquifaxEnricherImpl equifaxEnricher;
 
     @BeforeEach
     void setUp() {
-        equifaxEnricher = new EquifaxEnricher(tracingService, metricsService, resiliencyService, eventPublisher, equifaxService);
+        equifaxEnricher = new EquifaxEnricherImpl(tracingService, metricsService, resiliencyService, eventPublisher, equifaxService);
     }
 
     @Test

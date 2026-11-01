@@ -35,18 +35,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
+@Component("equifaxEnricher")
 @EnricherMetadata(
         providerName = "EquifaxUS",
         tenantId = "d85dea9e-6634-4870-888f-d7cfa0e59fd2",
         type = "consumer-credit-report",
         priority = 100
 )
-public class EquifaxEnricher extends DataEnricher<CreditReportDTO, EquifaxReportResponse, CreditReportDTO> {
+public class EquifaxEnricherImpl extends DataEnricher<CreditReportDTO, EquifaxReportResponse, CreditReportDTO> {
 
     private final EquifaxServiceImpl equifaxService;
 
-    public EquifaxEnricher(JobTracingService tracingService,
+    public EquifaxEnricherImpl(JobTracingService tracingService,
                            JobMetricsService metricsService,
                            ResiliencyDecoratorService resiliencyService,
                            EnrichmentEventPublisher eventPublisher,

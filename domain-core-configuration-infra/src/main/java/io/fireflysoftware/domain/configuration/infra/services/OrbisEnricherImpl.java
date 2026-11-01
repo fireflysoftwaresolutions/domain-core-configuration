@@ -32,18 +32,18 @@ import reactor.core.publisher.Mono;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("orbisEnricher")
 @EnricherMetadata(
     providerName = "Orbis BvD",
     tenantId = "efdd318a-d07a-45a6-bfbf-a9922f696c6f",
     type = "company-details",
     priority = 100
 )
-public class OrbisEnricher extends DataEnricher<SelectCompanyResponse, OrbisDataResponse, SelectCompanyResponse> {
+public class OrbisEnricherImpl extends DataEnricher<SelectCompanyResponse, OrbisDataResponse, SelectCompanyResponse> {
 
     private final OrbisServiceImpl orbisService;
 
-    public OrbisEnricher(
+    public OrbisEnricherImpl(
             JobTracingService tracingService,
             JobMetricsService metricsService,
             ResiliencyDecoratorService resiliencyService,
