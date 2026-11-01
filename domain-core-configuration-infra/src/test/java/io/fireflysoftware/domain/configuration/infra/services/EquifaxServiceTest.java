@@ -42,11 +42,11 @@ class EquifaxServiceTest {
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
     private RestClient equifaxRestClient;
 
-    private EquifaxService equifaxService;
+    private EquifaxServiceImpl equifaxService;
 
     @BeforeEach
     void setUp() {
-        equifaxService = new EquifaxService(equifaxRestClient, "user", "pass");
+        equifaxService = new EquifaxServiceImpl(equifaxRestClient, "user", "pass");
     }
 
     @Test

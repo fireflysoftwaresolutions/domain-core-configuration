@@ -29,15 +29,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Default adapter. It returns the sandbox dataset and never opens a network connection.
- * An installer replaces this class with {@link ConfigMgmtBusinessParameterAdapter}.
+ * An installer replaces this class with {@link ConfigMgmtBusinessParameterAdapterImpl}.
  */
-public final class SandboxBusinessParameterAdapter implements BusinessParameterPort {
+public final class SandboxBusinessParameterAdapterImpl implements BusinessParameterPort {
 
     private final Map<UUID, BusinessParameter> byId = new ConcurrentHashMap<>();
     private final Map<String, UUID> byKey = new ConcurrentHashMap<>();
     private final Map<UUID, List<ParameterHistoryEntry>> history = new ConcurrentHashMap<>();
 
-    public SandboxBusinessParameterAdapter() {
+    public SandboxBusinessParameterAdapterImpl() {
         SandboxParameterKey.seed().forEach(this::insert);
     }
 

@@ -31,14 +31,14 @@ import reactor.core.publisher.Mono;
 import java.util.Base64;
 import java.util.UUID;
 
-@Service
-public class EquifaxService {
+@Service("equifaxService")
+public class EquifaxServiceImpl {
 
     private final RestClient equifaxRestClient;
     private final String username;
     private final String password;
 
-    public EquifaxService(RestClient equifaxRestClient,
+    public EquifaxServiceImpl(RestClient equifaxRestClient,
                           @Value("${equifax.username:}") String username,
                           @Value("${equifax.password:}") String password) {
         this.equifaxRestClient = equifaxRestClient;

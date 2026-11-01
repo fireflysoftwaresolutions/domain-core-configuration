@@ -48,11 +48,11 @@ class OrbisServiceTest {
     @Mock
     private OrbisMapper orbisMapper;
 
-    private OrbisService orbisService;
+    private OrbisServiceImpl orbisService;
 
     @BeforeEach
     void setUp() {
-        orbisService = new OrbisService(orbisRestClient, orbisMapper);
+        orbisService = new OrbisServiceImpl(orbisRestClient, orbisMapper);
     }
 
     @Test

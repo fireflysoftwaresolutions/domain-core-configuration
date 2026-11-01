@@ -49,15 +49,15 @@ class OrbisEnricherTest {
     @Mock
     private EnrichmentEventPublisher eventPublisher;
     @Mock
-    private OrbisService orbisService;
+    private OrbisServiceImpl orbisService;
     @Mock
     private EnrichmentRequest enrichmentRequest;
 
-    private OrbisEnricher orbisEnricher;
+    private OrbisEnricherImpl orbisEnricher;
 
     @BeforeEach
     void setUp() {
-        orbisEnricher = new OrbisEnricher(tracingService, metricsService, resiliencyService, eventPublisher, orbisService);
+        orbisEnricher = new OrbisEnricherImpl(tracingService, metricsService, resiliencyService, eventPublisher, orbisService);
     }
 
     @Test
