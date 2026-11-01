@@ -54,7 +54,7 @@ class EquifaxEnricherTest {
     @Mock
     private EnrichmentEventPublisher eventPublisher;
     @Mock
-    private EquifaxService equifaxService;
+    private EquifaxServiceImpl equifaxService;
     @Mock
     private EnrichmentRequest enrichmentRequest;
 

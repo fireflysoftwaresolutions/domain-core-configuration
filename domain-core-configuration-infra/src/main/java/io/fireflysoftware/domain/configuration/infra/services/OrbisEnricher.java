@@ -41,14 +41,14 @@ import java.util.List;
 )
 public class OrbisEnricher extends DataEnricher<SelectCompanyResponse, OrbisDataResponse, SelectCompanyResponse> {
 
-    private final OrbisService orbisService;
+    private final OrbisServiceImpl orbisService;
 
     public OrbisEnricher(
             JobTracingService tracingService,
             JobMetricsService metricsService,
             ResiliencyDecoratorService resiliencyService,
             EnrichmentEventPublisher eventPublisher,
-            OrbisService orbisService) {
+            OrbisServiceImpl orbisService) {
         super(tracingService, metricsService, resiliencyService, eventPublisher, SelectCompanyResponse.class);
         this.orbisService = orbisService;
     }

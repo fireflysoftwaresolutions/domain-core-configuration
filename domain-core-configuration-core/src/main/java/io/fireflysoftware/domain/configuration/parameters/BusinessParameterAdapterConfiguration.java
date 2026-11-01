@@ -38,7 +38,7 @@ public class BusinessParameterAdapterConfiguration {
             havingValue = "sandbox",
             matchIfMissing = true)
     public BusinessParameterPort sandboxBusinessParameterPort() {
-        return new SandboxBusinessParameterAdapter();
+        return new SandboxBusinessParameterAdapterImpl();
     }
 
     @Bean
@@ -51,7 +51,7 @@ public class BusinessParameterAdapterConfiguration {
             @Value("${firefly.configuration.parameters.environment-name:local}") String environmentName) {
         ApiClient client = new ApiClient();
         client.setBasePath(baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl);
-        return new ConfigMgmtBusinessParameterAdapter(
+        return new ConfigMgmtBusinessParameterAdapterImpl(
                 new EnvironmentConfigurationsApi(client),
                 new FeatureFlagsApi(client),
                 new ConfigurationAuditsApi(client),

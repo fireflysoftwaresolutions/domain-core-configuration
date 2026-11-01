@@ -44,7 +44,7 @@ import java.util.UUID;
 /**
  * Reads and writes business parameters through core-common-config-mgmt.
  */
-public final class ConfigMgmtBusinessParameterAdapter implements BusinessParameterPort {
+public final class ConfigMgmtBusinessParameterAdapterImpl implements BusinessParameterPort {
 
     private final EnvironmentConfigurationsApi environments;
     private final FeatureFlagsApi flags;
@@ -52,7 +52,7 @@ public final class ConfigMgmtBusinessParameterAdapter implements BusinessParamet
     private final ObjectMapper mapper;
     private final String environmentName;
 
-    public ConfigMgmtBusinessParameterAdapter(EnvironmentConfigurationsApi environments,
+    public ConfigMgmtBusinessParameterAdapterImpl(EnvironmentConfigurationsApi environments,
                                                FeatureFlagsApi flags,
                                                ConfigurationAuditsApi audits,
                                                String environmentName) {
@@ -61,7 +61,7 @@ public final class ConfigMgmtBusinessParameterAdapter implements BusinessParamet
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS), environmentName);
     }
 
-    ConfigMgmtBusinessParameterAdapter(EnvironmentConfigurationsApi environments,
+    ConfigMgmtBusinessParameterAdapterImpl(EnvironmentConfigurationsApi environments,
                                         FeatureFlagsApi flags,
                                         ConfigurationAuditsApi audits,
                                         ObjectMapper mapper,
@@ -207,13 +207,13 @@ public final class ConfigMgmtBusinessParameterAdapter implements BusinessParamet
     private Mono<JsonNode> readEnvironment(UUID id) {
         return environments.getEnvironmentConfigById(id, key())
                 .map(dto -> (JsonNode) mapper.valueToTree(dto))
-                .onErrorResume(ConfigMgmtBusinessParameterAdapter::missing, error -> Mono.empty());
+                .onErrorResume(ConfigMgmtBusinessParameterAdapterImpl::missing, error -> Mono.empty());
     }
 
     private Mono<JsonNode> readFlag(UUID id) {
         return flags.getFeatureFlagById(id, key())
                 .map(dto -> (JsonNode) mapper.valueToTree(dto))
-                .onErrorResume(ConfigMgmtBusinessParameterAdapter::missing, error -> Mono.empty());
+                .onErrorResume(ConfigMgmtBusinessParameterAdapterImpl::missing, error -> Mono.empty());
     }
 
     private EnvironmentConfigDTO environment(ObjectNode body) {

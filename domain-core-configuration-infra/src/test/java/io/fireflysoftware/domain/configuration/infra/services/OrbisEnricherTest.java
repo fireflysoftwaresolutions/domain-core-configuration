@@ -49,7 +49,7 @@ class OrbisEnricherTest {
     @Mock
     private EnrichmentEventPublisher eventPublisher;
     @Mock
-    private OrbisService orbisService;
+    private OrbisServiceImpl orbisService;
     @Mock
     private EnrichmentRequest enrichmentRequest;
 

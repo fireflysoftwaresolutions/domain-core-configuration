@@ -82,7 +82,7 @@ class ConfigMgmtBusinessParameterAdapterTest {
         history.setContent(List.of(audit));
         when(audits.filterConfigurationAudits(any(), any(), any(), any(), any(), any(), any())).thenReturn(Mono.just(history));
 
-        ConfigMgmtBusinessParameterAdapter adapter = new ConfigMgmtBusinessParameterAdapter(
+        ConfigMgmtBusinessParameterAdapterImpl adapter = new ConfigMgmtBusinessParameterAdapterImpl(
                 environments, flags, audits, "local");
 
         BusinessParameter created = adapter.create(new BusinessParameter(

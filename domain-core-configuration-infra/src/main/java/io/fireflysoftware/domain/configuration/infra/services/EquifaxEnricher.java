@@ -44,13 +44,13 @@ import java.util.stream.Collectors;
 )
 public class EquifaxEnricher extends DataEnricher<CreditReportDTO, EquifaxReportResponse, CreditReportDTO> {
 
-    private final EquifaxService equifaxService;
+    private final EquifaxServiceImpl equifaxService;
 
     public EquifaxEnricher(JobTracingService tracingService,
                            JobMetricsService metricsService,
                            ResiliencyDecoratorService resiliencyService,
                            EnrichmentEventPublisher eventPublisher,
-                           EquifaxService equifaxService) {
+                           EquifaxServiceImpl equifaxService) {
         super(tracingService, metricsService, resiliencyService, eventPublisher, CreditReportDTO.class);
         this.equifaxService = equifaxService;
     }

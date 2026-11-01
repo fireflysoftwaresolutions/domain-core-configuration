@@ -33,7 +33,7 @@ class SandboxBusinessParameterAdapterTest {
 
     @Test
     void sandboxDatasetCoversPaymentsRoutesAndJourneyLimits() {
-        SandboxBusinessParameterAdapter adapter = new SandboxBusinessParameterAdapter();
+        SandboxBusinessParameterAdapterImpl adapter = new SandboxBusinessParameterAdapterImpl();
 
         StepVerifier.create(adapter.findByKey(SandboxParameterKey.PAYMENTS_CLEARING_OUTBOUND_ACCOUNT_ID.key()))
                 .assertNext(parameter -> {
@@ -72,7 +72,7 @@ class SandboxBusinessParameterAdapterTest {
 
     @Test
     void createCompensatesByDelete() {
-        SandboxBusinessParameterAdapter adapter = new SandboxBusinessParameterAdapter();
+        SandboxBusinessParameterAdapterImpl adapter = new SandboxBusinessParameterAdapterImpl();
         CreateBusinessParameterSaga saga = new CreateBusinessParameterSaga(adapter);
         ExecutionContext ctx = ExecutionContext.forSaga("CreateBusinessParameterSaga", "test");
         BusinessParameter draft = new BusinessParameter(
@@ -88,7 +88,7 @@ class SandboxBusinessParameterAdapterTest {
 
     @Test
     void updateCompensatesByRestoringThePreviousValue() {
-        SandboxBusinessParameterAdapter adapter = new SandboxBusinessParameterAdapter();
+        SandboxBusinessParameterAdapterImpl adapter = new SandboxBusinessParameterAdapterImpl();
         UpdateBusinessParameterSaga saga = new UpdateBusinessParameterSaga(adapter);
         ExecutionContext ctx = ExecutionContext.forSaga("UpdateBusinessParameterSaga", "test");
         UUID id = SandboxParameterKey.JOURNEY_CARDS_TENURE_YEARS.id();
@@ -106,7 +106,7 @@ class SandboxBusinessParameterAdapterTest {
 
     @Test
     void statusChangeRecordsHistoryAndCompensationRestoresThePreviousStatus() {
-        SandboxBusinessParameterAdapter adapter = new SandboxBusinessParameterAdapter();
+        SandboxBusinessParameterAdapterImpl adapter = new SandboxBusinessParameterAdapterImpl();
         ChangeBusinessParameterStatusSaga saga = new ChangeBusinessParameterStatusSaga(adapter);
         ExecutionContext ctx = ExecutionContext.forSaga("ChangeBusinessParameterStatusSaga", "test");
         UUID id = SandboxParameterKey.JOURNEY_LENDING_MIN_CREDIT_SCORE.id();
@@ -125,7 +125,7 @@ class SandboxBusinessParameterAdapterTest {
 
     @Test
     void removeCompensatesByRecreate() {
-        SandboxBusinessParameterAdapter adapter = new SandboxBusinessParameterAdapter();
+        SandboxBusinessParameterAdapterImpl adapter = new SandboxBusinessParameterAdapterImpl();
         RemoveBusinessParameterSaga saga = new RemoveBusinessParameterSaga(adapter);
         ExecutionContext ctx = ExecutionContext.forSaga("RemoveBusinessParameterSaga", "test");
         UUID id = SandboxParameterKey.PAYMENTS_CLEARING_INBOUND_ACCOUNT_ID.id();
@@ -141,7 +141,7 @@ class SandboxBusinessParameterAdapterTest {
 
     @Test
     void queryReadsThePortDirectly() {
-        SandboxBusinessParameterAdapter adapter = new SandboxBusinessParameterAdapter();
+        SandboxBusinessParameterAdapterImpl adapter = new SandboxBusinessParameterAdapterImpl();
         BusinessParameterQuery query = new BusinessParameterQuery(adapter);
         StepVerifier.create(query.byKey(SandboxParameterKey.JOURNEY_CARDS_TENURE_YEARS.key()))
                 .assertNext(parameter -> assertThat(parameter.value()).isEqualTo("4"))
@@ -155,7 +155,7 @@ class SandboxBusinessParameterAdapterTest {
                 .run(context -> {
                     assertThat(context).hasSingleBean(BusinessParameterPort.class);
                     assertThat(context.getBean(BusinessParameterPort.class))
-                            .isInstanceOf(SandboxBusinessParameterAdapter.class);
+                            .isInstanceOf(SandboxBusinessParameterAdapterImpl.class);
                 });
     }
 
@@ -165,6 +165,6 @@ class SandboxBusinessParameterAdapterTest {
                 .withUserConfiguration(BusinessParameterAdapterConfiguration.class)
                 .withPropertyValues("firefly.configuration.parameters.adapter=core")
                 .run(context -> assertThat(context.getBean(BusinessParameterPort.class))
-                        .isInstanceOf(ConfigMgmtBusinessParameterAdapter.class));
+                        .isInstanceOf(ConfigMgmtBusinessParameterAdapterImpl.class));
     }
 }

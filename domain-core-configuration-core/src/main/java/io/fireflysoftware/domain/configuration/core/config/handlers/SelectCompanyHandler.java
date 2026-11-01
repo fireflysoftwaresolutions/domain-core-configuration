@@ -20,7 +20,7 @@ package io.fireflysoftware.domain.configuration.core.config.handlers;
 import org.fireflyframework.cqrs.annotations.QueryHandlerComponent;
 import org.fireflyframework.cqrs.query.QueryHandler;
 import io.fireflysoftware.domain.configuration.core.config.queries.SelectCompanyQuery;
-import io.fireflysoftware.domain.configuration.infra.services.OrbisService;
+import io.fireflysoftware.domain.configuration.infra.services.OrbisServiceImpl;
 import io.fireflysoftware.domain.configuration.interfaces.rest.SelectCompanyRequest;
 import io.fireflysoftware.domain.configuration.interfaces.rest.SelectCompanyResponse;
 import reactor.core.publisher.Mono;
@@ -30,9 +30,9 @@ import java.util.List;
 @QueryHandlerComponent
 public class SelectCompanyHandler extends QueryHandler<SelectCompanyQuery, List<SelectCompanyResponse>> {
 
-    private final OrbisService orbisService;
+    private final OrbisServiceImpl orbisService;
 
-    public SelectCompanyHandler(OrbisService orbisService) {
+    public SelectCompanyHandler(OrbisServiceImpl orbisService) {
         this.orbisService = orbisService;
     }
 

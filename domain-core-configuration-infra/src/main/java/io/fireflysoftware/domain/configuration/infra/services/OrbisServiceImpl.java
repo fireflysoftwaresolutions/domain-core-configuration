@@ -29,13 +29,13 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-@Service
-public class OrbisService {
+@Service("orbisService")
+public class OrbisServiceImpl {
 
     private final RestClient orbisRestClient;
     private final OrbisMapper orbisMapper;
 
-    public OrbisService(RestClient orbisRestClient, OrbisMapper orbisMapper) {
+    public OrbisServiceImpl(RestClient orbisRestClient, OrbisMapper orbisMapper) {
         this.orbisRestClient = orbisRestClient;
         this.orbisMapper = orbisMapper;
     }

@@ -25,8 +25,8 @@ import java.util.UUID;
  * Port for business parameters. Banking and insurance journeys read limits, switches,
  * account identifiers, and transfer routes through this port.
  *
- * <p>The default adapter is {@link SandboxBusinessParameterAdapter}. An installer replaces
- * that adapter with {@link ConfigMgmtBusinessParameterAdapter} by setting
+ * <p>The default adapter is {@link SandboxBusinessParameterAdapterImpl}. An installer replaces
+ * that adapter with {@link ConfigMgmtBusinessParameterAdapterImpl} by setting
  * {@code firefly.configuration.parameters.adapter=core}. Identity and rules stay in Jafly.
  */
 public interface BusinessParameterPort {
